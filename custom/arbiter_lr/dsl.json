@@ -1,0 +1,136 @@
+{
+    "components": {
+        "reader_0": {
+            "module": "Reader",
+            "output": {
+                "data": [
+                    "data"
+                ]
+            }
+        },
+        "dataio_0": {
+            "module": "DataIO",
+            "input": {
+                "data": {
+                    "data": [
+                        "reader_0.data"
+                    ]
+                }
+            },
+            "output": {
+                "data": [
+                    "data"
+                ],
+                "model": [
+                    "model"
+                ]
+            }
+        },
+        "intersection_0": {
+            "module": "Intersection",
+            "input": {
+                "data": {
+                    "data": [
+                        "dataio_0.data"
+                    ]
+                }
+            },
+            "output": {
+                "data": [
+                    "data"
+                ]
+            }
+        },
+        "data_scale_0": {
+            "module": "FeatureScale",
+            "input": {
+                "data": {
+                    "data": [
+                        "intersection_0.data"
+                    ]
+                }
+            },
+            "output": {
+                "data": [
+                    "data"
+                ],
+                "model": [
+                    "feature_scale"
+                ]
+            }
+        },
+        "data_split_0": {
+            "module": "HeteroDataSplit",
+            "input": {
+                "data": {
+                    "data": [
+                        "data_scale_0.data"
+                    ]
+                }
+            },
+            "output": {
+                "data": [
+                    "train",
+                    "validate",
+                    "test"
+                ]
+            }
+        },
+        "auto_lr_0": {
+            "module": "AutoLR",
+            "input": {
+                "data": {
+                    "train_data": [
+                        "data_split_0.train"
+                    ],
+                    "validate_data": [
+                        "data_split_0.validate"
+                    ]
+                }
+            },
+            "output": {
+                "data": [
+                    "data"
+                ],
+                "model": [
+                    "model"
+                ]
+            }
+        },
+        "auto_lr_1": {
+            "module": "AutoLR",
+            "input": {
+                "data": {
+                    "test_data": [
+                        "data_split_0.test"
+                    ]
+                },
+                "model": [
+                    "auto_lr_0.model"
+                ]
+            },
+            "output": {
+                "data": [
+                    "data"
+                ],
+                "model": [
+                    "model"
+                ]
+            }
+        },
+        "evaluation_0": {
+            "module": "Evaluation", "input": {
+                "data": {
+                    "data": [
+                        "auto_lr_1.data"
+                    ]
+                }
+            },
+            "output": {
+                "data": [
+                    "data"
+                ]
+            }
+        }
+    }
+}

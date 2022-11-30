@@ -1,0 +1,77 @@
+{
+    "dsl_version": 2,
+    "initiator": {
+        "role": "guest",
+        "party_id": 9999
+    },
+    "role": {
+        "host": [
+            9998
+        ],
+        "guest": [
+            9999
+        ]
+    },
+    "component_parameters": {
+        "common": {
+            "dataio_0": {
+                "with_label": true,
+                "output_format": "dense"
+            },
+            "data_scale_0": {
+                "method": "min_max_scale",
+                "mode": "normal",
+                "scale_col_indexes": -1,
+                "with_mean": false,
+                "with_std": false,
+                "need_run": true
+            },
+            "data_split_0": {
+                "test_size": 0.2,
+                "validate_size": 0.2,
+                "stratified": true
+            },
+            "auto_lr_0": {
+                "trial_num": 50,
+                "n_iters": 5,
+                "need_prone": true,
+                "alpha": 0.0001,
+                "batch_size": 128,
+                "learning_rate": 0.3,
+                "decay": 0.03,
+                "use_preset_param": true
+            },
+            "evaluation_0": {
+                "eval_type": "binary"
+            }
+        },
+        "role": {
+            "host": {
+                "0": {
+                    "reader_0": {
+                        "table": {
+                            "name": "breast_hetero_host",
+                            "namespace": "experiment"
+                        }
+                    },
+                    "dataio_0": {
+                        "with_label": false
+                    },
+                    "evaluation_0": {
+                        "need_run": false
+                    }
+                }
+            },
+            "guest": {
+                "0": {
+                    "reader_0": {
+                        "table": {
+                            "name": "breast_hetero_guest",
+                            "namespace": "experiment"
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,7 @@
+{
+    "file": "/root/standalone_fate_install_1.8.0/examples/data/breast_hetero_guest.csv",
+    "table_name": "breast_hetero_guest",
+    "namespace": "experiment",
+    "head": 1,
+    "partition": 8
+}
